@@ -1,77 +1,109 @@
-<!DOCTYPE html><html lang="pt-br">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Loja de Brainrots</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    .quantidade-select {
-      margin-top: 10px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .dropdown-menu {
+      transition: all 0.8s ease-in-out;
     }
-    .quantidade-select select {
-      padding: 6px 12px;
-      font-size: 1rem;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
-    .price-tag {
-      font-size: 0.95rem;
+    .btn-cart {
+      background: #3498db;
+      color: white;
+      padding: 18px 36px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
       font-weight: bold;
-      color: #27ae60;
-      float: right;
+      cursor: pointer;
+      margin: 20px;
+      transition: transform 0.2s, box-shadow 0.3s;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+    .btn-cart:hover {
+      transform: scale(1.06);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+    .seguro {
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-top: 60px;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+    .dropdown-menu li {
+      background: #f9f9f9;
+      margin-bottom: 16px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 20px;
     }
   </style>
 </head>
 <body>
+
+  <!-- Música de fundo -->
   <audio id="bg-music" autoplay loop>
     <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_59328b4fc4.mp3?filename=chill-ambient-11476.mp3" type="audio/mp3" />
   </audio>
-  <button id="btn-music-toggle" aria-label="Alternar música">🔊</button>  <header>
+  <button id="btn-music-toggle" aria-label="Alternar música">🔊</button>
+
+  <header>
     <h1>Loja de Brainrots</h1>
     <p class="sub">Única loja que vende Lucky Block!</p>
-  </header>  <main>
+  </header>
+
+  <main>
     <button id="btn-dropdown" class="btn-menu">🧠 Mostrar Brainrots</button>
     <ul id="dropdown-menu" class="dropdown-menu hidden">
-      <li data-name="Cocofanto" data-preco="0.5" data-estoque="3">Cocofanto – Estoque: 3 (10 k/s) <span class="price-tag">R$ 0,50</span></li>
-      <li data-name="Rainbow Cocofanto" data-preco="1.5" data-estoque="1">Rainbow Cocofanto – Estoque: 1 (40 k/s) <span class="price-tag">R$ 1,50</span></li>
-      <li data-name="Girafa celestre" data-preco="0.99" data-estoque="3">Girafa celestre – Estoque: 3 (20 k/s) <span class="price-tag">R$ 0,99</span></li>
-      <li data-name="Tralalelo" data-preco="2.5" data-estoque="2">Tralalelo – Estoque: 2 (50 k/s) <span class="price-tag">R$ 2,50</span></li>
-      <li data-name="Tigroligre frutonni" data-preco="3.5" data-estoque="1">Tigroligre frutonni – Estoque: 1 (60 k/s) <span class="price-tag">R$ 3,50</span></li>
-      <li data-name="Tralalelo Gold ☄️" data-preco="6.99" data-estoque="1">Tralalelo Gold ☄️ – Estoque: 1 (212.5 k/s) <span class="price-tag">R$ 6,99</span></li>
-      <li data-name="Tralalelo Gold Tung Sahur" data-preco="8.99" data-estoque="1">Tralalelo Gold Tung Sahur – Estoque: 1 (262.5 k/s) <span class="price-tag">R$ 8,99</span></li>
-      <li data-name="Odin din dun ✨️" data-preco="9.99" data-estoque="1">Odin din dun ✨️ – Estoque: 1 (450 k/s) <span class="price-tag">R$ 9,99</span></li>
-      <li data-name="Odin din dun nyan cat 🐈" data-preco="9.99" data-estoque="1">Odin din dun nyan cat 🐈 – Estoque: 1 (450 k/s) <span class="price-tag">R$ 9,99</span></li>
-      <li data-name="Trezno 3000 ☄️" data-preco="7.99" data-estoque="1">Trezno 3000 ☄️ – Estoque: 1 (600 k/s) <span class="price-tag">R$ 7,99</span></li>
-      <li data-name="Trezno 3000 ✨️" data-preco="14.99" data-estoque="1">Trezno 3000 ✨️ – Estoque: 1 (900 k/s) <span class="price-tag">R$ 14,99</span></li>
+      <li data-name="Mythic lucky block">Mythic lucky block – Estoque: 4</li>
+      <li data-name="God lucky block">God lucky block – Estoque: 1</li>
+      <li data-name="Cocofanto">Cocofanto – Estoque: 3 (10 k/s)</li>
+      <li data-name="Rainbow cocofanto">Rainbow cocofanto – Estoque: 1 (40 k/s)</li>
+      <li data-name="Girafa celestre">Girafa celestre – Estoque: 3 (20 k/s)</li>
+      <li data-name="Tralalelo">Tralalelo – Estoque: 2 (50 k/s)</li>
+      <li data-name="Tigroligre frutonni">Tigroligre frutonni – Estoque: 1 (60 k/s)</li>
+      <li data-name="Tralalelo gold">Tralalelo gold – Estoque: 1 (212.5 k/s)</li>
+      <li data-name="Tralalelo gold tung sahur">Tralalelo gold tung sahur – Estoque: 1 (262.5 k/s)</li>
+      <li data-name="Odin dun ✨">Odin dun ✨ – Estoque: 1 (450 k/s)</li>
+      <li data-name="Odin dun 🐈">Odin dun 🐈 – Estoque: 1 (450 k/s)</li>
+      <li data-name="Trezno turbo 3000 🔥">Trezno turbo 3000 🔥 – Estoque: 1 (600 k/s)</li>
+      <li data-name="Trezno turbo 3000 ✨">Trezno turbo 3000 ✨ – Estoque: 1 (900 k/s)</li>
+      <li data-name="Los tralaletilos">Los tralaletilos – Estoque: 1 (500 k/s)</li>
       <p class="aviso-preco">*Consulte o preço no momento da compra*</p>
-    </ul><div id="cart" class="cart hidden">
-  <h2>Carrinho</h2>
-  <ul id="cart-items"></ul>
-  <p id="total-price" style="font-size: 1.2rem; font-weight: bold; margin-top: 15px;"></p>
-  <button id="btn-buy" class="btn-cart">Comprar selecionados</button>
-</div>
+    </ul>
 
-<section class="suporte">
-  <a href="https://wa.me/5521982841299?text=Ol%C3%A1%2C+quero+falar+com+o+suporte." target="_blank" class="btn-suporte">Falar com o Suporte</a>
-  <p class="seguro">Compra 100% segura 🔓</p>
-</section>
+    <div id="cart" class="cart hidden">
+      <h2>Carrinho</h2>
+      <ul id="cart-items"></ul>
+      <button id="btn-buy" class="btn-cart">Comprar selecionados</button>
+    </div>
 
-  </main>  <footer>
+    <section class="suporte">
+      <a href="https://wa.me/5521982841299?text=Ol%C3%A1%2C+quero+falar+com+o+suporte." 
+         target="_blank" class="btn-suporte">Falar com o Suporte</a>
+      <p class="seguro">Compra 100% segura 🔓</p>
+    </section>
+  </main>
+
+  <footer>
     <p>© 2025 | Desenvolvido por Kaio M Pereira</p>
-  </footer>  <script>
+  </footer>
+
+  <script>
     const music = document.getElementById('bg-music');
     music.volume = 0.15;
     music.play().catch(()=>{});
-    document.getElementById('btn-music-toggle').addEventListener('click', () => {
+    const btnMusic = document.getElementById('btn-music-toggle');
+    btnMusic.addEventListener('click', () => {
       if (music.paused) {
-        music.play();
-        document.getElementById('btn-music-toggle').textContent = '🔊';
+        music.play(); btnMusic.textContent='🔊';
       } else {
-        music.pause();
-        document.getElementById('btn-music-toggle').textContent = '🔈';
+        music.pause(); btnMusic.textContent='🔈';
       }
     });
 
@@ -80,8 +112,7 @@
     const cart = document.getElementById('cart');
     const cartList = document.getElementById('cart-items');
     const btnBuy = document.getElementById('btn-buy');
-    const totalPrice = document.getElementById('total-price');
-    const selected = new Map();
+    let selected = [];
 
     btnDropdown.addEventListener('click', () => {
       menu.classList.toggle('hidden');
@@ -91,21 +122,13 @@
     menu.querySelectorAll('li[data-name]').forEach(li => {
       li.addEventListener('click', () => {
         const name = li.dataset.name;
-        const preco = parseFloat(li.dataset.preco);
-        const estoque = parseInt(li.dataset.estoque);
-
-        if (estoque > 1) {
-          let quantidade = prompt(`Quantos '${name}' deseja (1 até ${estoque})?`, 1);
-          quantidade = parseInt(quantidade);
-          if (quantidade >= 1 && quantidade <= estoque) {
-            selected.set(name, { quantidade, preco });
-          }
+        const idx = selected.indexOf(name);
+        if (idx >= 0) {
+          selected.splice(idx, 1);
+          li.classList.remove('selected');
         } else {
-          if (selected.has(name)) {
-            selected.delete(name);
-          } else {
-            selected.set(name, { quantidade: 1, preco });
-          }
+          selected.push(name);
+          li.classList.add('selected');
         }
         renderCart();
       });
@@ -113,31 +136,31 @@
 
     function renderCart() {
       cartList.innerHTML = '';
-      let total = 0;
-      selected.forEach((item, name) => {
-        const li = document.createElement('li');
-        const subtotal = item.preco * item.quantidade;
-        total += subtotal;
-        li.textContent = `${name} x${item.quantidade} — R$ ${subtotal.toFixed(2)}`;
-        cartList.appendChild(li);
-      });
-      if (selected.size > 0) {
-        cart.classList.remove('hidden');
-        totalPrice.textContent = `Total: R$ ${total.toFixed(2)}`;
-      } else {
+      if (selected.length === 0) {
         cart.classList.add('hidden');
-        totalPrice.textContent = '';
+        return;
       }
+      selected.forEach(name => {
+        const item = document.createElement('li');
+        item.textContent = name;
+        cartList.appendChild(item);
+      });
+      cart.classList.remove('hidden');
     }
 
     btnBuy.addEventListener('click', () => {
-      const itens = [];
-      selected.forEach((item, name) => {
-        itens.push(`${name} x${item.quantidade}`);
-      });
-      let text = 'Olá, quero comprar os Brainrots: ' + itens.join(', ') + '.';
+      let text = 'Olá, quero comprar os Brainrots: ';
+      if (selected.length === 1) {
+        text += selected[0] + '.';
+      } else {
+        const last = selected.pop();
+        text += selected.join(', ') + ' e ' + last + '.';
+        selected.push(last);
+      }
       const msg = encodeURIComponent(text);
       window.open(`https://wa.me/5521982841299?text=${msg}`, '_blank');
     });
-  </script></body>
+  </script>
+
+</body>
 </html>

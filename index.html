@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Loja de Brainrots</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <audio id="bg-music" autoplay loop>
+    <source src="https://cdn.jsdelivr.net/gh/anars/blank-audio/10-seconds-of-silence.mp3" type="audio/mp3" />
+  </audio>
+  <button id="btn-music-toggle" aria-label="Alternar música">🔊</button>
+
+  <header>
+    <h1>Loja de Brainrots!</h1>
+    <p class="sub">Única loja que vende Lucky Block!</p>
+  </header>
+
+  <main>
+    <section class="produtos">
+      <div class="produto">
+        <h2>Lucky Block <span class="god">God</span></h2>
+        <p><strong>Estoque:</strong> 1 unidade</p>
+        <a href="https://wa.me/5521982841299?text=Ol%C3%A1%2C+quero+comprar+a+Lucky+Block+God%21" target="_blank" class="btn-comprar">Comprar via WhatsApp</a>
+      </div>
+
+      <div class="produto">
+        <h2>Lucky Block <span class="mythic">Mythic</span></h2>
+        <p><strong>Estoque:</strong> 3 unidades</p>
+        <a href="https://wa.me/5521982841299?text=Ol%C3%A1%2C+quero+comprar+a+Lucky+Block+Mythic%21" target="_blank" class="btn-comprar">Comprar via WhatsApp</a>
+      </div>
+
+      <div class="produto">
+        <button id="btn-dropdown" class="btn-comprar">Escolher outro Brainrot</button>
+        <ul id="dropdown-menu" class="dropdown-menu hidden">
+          <li>Mythic lucky block – Estoque: 4</li>
+          <li>God lucky block – Estoque: 1</li>
+          <li>Cocofanto – Estoque: 3</li>
+          <li>Rainbow cocofanto – Estoque: 1</li>
+          <li>Girafa celestre – Estoque: 3</li>
+          <li>Tralalelo – Estoque: 2</li>
+          <li>Tigroligre frutonni – Estoque: 1</li>
+          <li>Tralalelo gold – Estoque: 1</li>
+          <li>Tralalelo gold tung sahur – Estoque: 1</li>
+          <li>Odin dun ✨ – Estoque: 1</li>
+          <li>Odin dun 🐈 – Estoque: 1</li>
+          <li>Trezno turbo 3000 🔥 – Estoque: 1</li>
+          <li>Trezno turbo 3000 ✨ – Estoque: 1</li>
+          <li>Los tralaletilos – Estoque: 1</li>
+          <p class="aviso-preco">*Consulte o preço no momento da compra*</p>
+        </ul>
+      </div>
+    </section>
+
+    <section class="suporte">
+      <a href="https://wa.me/5521982841299?text=Ol%C3%A1%2C+quero+falar+com+o+suporte" target="_blank" class="btn-suporte">Falar com o Suporte</a>
+      <p class="seguro">Compra 100% segura 🔓</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 | Desenvolvido por Kaio M Pereira</p>
+  </footer>
+
+  <script>
+    const music = document.getElementById('bg-music');
+    const btnToggle = document.getElementById('btn-music-toggle');
+    btnToggle.addEventListener('click', () => {
+      if (music.paused) {
+        music.play();
+        btnToggle.textContent = '🔊';
+      } else {
+        music.pause();
+        btnToggle.textContent = '🔈';
+      }
+    });
+
+    const btnDropdown = document.getElementById('btn-dropdown');
+    const menu = document.getElementById('dropdown-menu');
+    btnDropdown.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+  </script>
+
+</body>
+</html>

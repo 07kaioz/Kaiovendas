@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -9,54 +8,42 @@
 </head>
 <body>
 
-  <audio id="bg-music" autoplay loop>
-    <source src="https://cdn.jsdelivr.net/gh/anars/blank-audio/10-seconds-of-silence.mp3" type="audio/mp3" />
+  <!-- Música de fundo (coloque seu arquivo brainrot.mp3 na mesma pasta) -->
+  <audio id="bg-music" loop>
+    <source src="brainrot.mp3" type="audio/mp3" />
+    Seu navegador não suporta áudio.
   </audio>
   <button id="btn-music-toggle" aria-label="Alternar música">🔊</button>
 
   <header>
-    <h1>Loja de Brainrots!</h1>
+    <h1>Loja de Brainrots</h1>
     <p class="sub">Única loja que vende Lucky Block!</p>
   </header>
 
   <main>
-    <section class="produtos">
-      <div class="produto">
-        <h2>Lucky Block <span class="god">God</span></h2>
-        <p><strong>Estoque:</strong> 1 unidade</p>
-        <a href="https://wa.me/5521982841299?text=Ol%C3%A1%2C+quero+comprar+a+Lucky+Block+God%21" target="_blank" class="btn-comprar">Comprar via WhatsApp</a>
-      </div>
-
-      <div class="produto">
-        <h2>Lucky Block <span class="mythic">Mythic</span></h2>
-        <p><strong>Estoque:</strong> 3 unidades</p>
-        <a href="https://wa.me/5521982841299?text=Ol%C3%A1%2C+quero+comprar+a+Lucky+Block+Mythic%21" target="_blank" class="btn-comprar">Comprar via WhatsApp</a>
-      </div>
-
-      <div class="produto">
-        <button id="btn-dropdown" class="btn-comprar">Escolher outro Brainrot</button>
-        <ul id="dropdown-menu" class="dropdown-menu hidden">
-          <li>Mythic lucky block – Estoque: 4</li>
-          <li>God lucky block – Estoque: 1</li>
-          <li>Cocofanto – Estoque: 3</li>
-          <li>Rainbow cocofanto – Estoque: 1</li>
-          <li>Girafa celestre – Estoque: 3</li>
-          <li>Tralalelo – Estoque: 2</li>
-          <li>Tigroligre frutonni – Estoque: 1</li>
-          <li>Tralalelo gold – Estoque: 1</li>
-          <li>Tralalelo gold tung sahur – Estoque: 1</li>
-          <li>Odin dun ✨ – Estoque: 1</li>
-          <li>Odin dun 🐈 – Estoque: 1</li>
-          <li>Trezno turbo 3000 🔥 – Estoque: 1</li>
-          <li>Trezno turbo 3000 ✨ – Estoque: 1</li>
-          <li>Los tralaletilos – Estoque: 1</li>
-          <p class="aviso-preco">*Consulte o preço no momento da compra*</p>
-        </ul>
-      </div>
-    </section>
+    <button id="btn-dropdown" class="btn-menu">🧠 Mostrar Brainrots</button>
+    <ul id="dropdown-menu" class="dropdown-menu hidden">
+      <li><strong>Mythic lucky block</strong> – Estoque: 4</li>
+      <li><strong>God lucky block</strong> – Estoque: 1</li>
+      <li><strong>Cocofanto</strong> – Estoque: 3 (10 k/s)</li>
+      <li><strong>Rainbow cocofanto</strong> – Estoque: 1 (40 k/s)</li>
+      <li><strong>Girafa celestre</strong> – Estoque: 3 (20 k/s)</li>
+      <li><strong>Tralalelo</strong> – Estoque: 2 (50 k/s)</li>
+      <li><strong>Tigroligre frutonni</strong> – Estoque: 1 (60 k/s)</li>
+      <li><strong>Tralalelo gold</strong> – Estoque: 1 (212.5 k/s)</li>
+      <li><strong>Tralalelo gold tung sahur</strong> – Estoque: 1 (262.5 k/s)</li>
+      <li><strong>Odin dun ✨</strong> – Estoque: 1 (450 k/s)</li>
+      <li><strong>Odin dun 🐈</strong> – Estoque: 1 (450 k/s)</li>
+      <li><strong>Trezno turbo 3000 🔥</strong> – Estoque: 1 (600 k/s)</li>
+      <li><strong>Trezno turbo 3000 ✨</strong> – Estoque: 1 (900 k/s)</li>
+      <li><strong>Los tralaletilos</strong> – Estoque: 1 (500 k/s)</li>
+      <p class="aviso-preco">*Consulte o preço no momento da compra*</p>
+    </ul>
 
     <section class="suporte">
-      <a href="https://wa.me/5521982841299?text=Ol%C3%A1%2C+quero+falar+com+o+suporte" target="_blank" class="btn-suporte">Falar com o Suporte</a>
+      <a href="https://wa.me/5521982841299?text=Ol%C3%A1%2C+quero+falar+com+o+suporte" target="_blank" class="btn-suporte">
+        Falar com o Suporte
+      </a>
       <p class="seguro">Compra 100% segura 🔓</p>
     </section>
   </main>
@@ -66,22 +53,29 @@
   </footer>
 
   <script>
+    // Música em volume baixo
     const music = document.getElementById('bg-music');
-    const btnToggle = document.getElementById('btn-music-toggle');
-    btnToggle.addEventListener('click', () => {
+    music.volume = 0.2;
+    music.play().catch(() =>{}); 
+
+    // Toggle música
+    const btnMusic = document.getElementById('btn-music-toggle');
+    btnMusic.addEventListener('click', () => {
       if (music.paused) {
-        music.play();
-        btnToggle.textContent = '🔊';
+        music.play(); btnMusic.textContent = '🔊';
       } else {
-        music.pause();
-        btnToggle.textContent = '🔈';
+        music.pause(); btnMusic.textContent = '🔈';
       }
     });
 
+    // Toggle menu
     const btnDropdown = document.getElementById('btn-dropdown');
     const menu = document.getElementById('dropdown-menu');
     btnDropdown.addEventListener('click', () => {
       menu.classList.toggle('hidden');
+      btnDropdown.textContent = menu.classList.contains('hidden')
+        ? '🧠 Mostrar Brainrots'
+        : '✖️ Fechar Lista';
     });
   </script>
 

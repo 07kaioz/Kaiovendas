@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -13,7 +12,7 @@
   <audio id="bg-music" autoplay loop>
     <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_59328b4fc4.mp3?filename=chill-ambient-11476.mp3" type="audio/mp3" />
   </audio>
-  <button id="btn-music-toggle" aria-label="Alternar música">🔊</button>
+  <button id="btn-music-toggle">🔊</button>
 
   <header>
     <h1>Loja de Brainrots</h1>
@@ -22,6 +21,7 @@
 
   <main>
     <button id="btn-dropdown" class="btn-menu">🧠 Mostrar Brainrots</button>
+
     <ul id="dropdown-menu" class="dropdown-menu hidden">
       <li data-name="Mythic lucky block">Mythic lucky block – Estoque: 4</li>
       <li data-name="God lucky block">God lucky block – Estoque: 1</li>
@@ -44,12 +44,12 @@
       <h2>Carrinho</h2>
       <ul id="cart-items"></ul>
       <button id="btn-buy" class="btn-suporte">Comprar selecionados</button>
+      <button id="btn-clear" class="btn-clear">Limpar carrinho</button>
     </div>
 
     <section class="suporte">
-      <a href="https://wa.me/5521982841299?text=Ol%C3%A1%2C+quero+falar+com+o+suporte." 
-         target="_blank" class="btn-suporte">Falar com o Suporte</a>
-      <p class="seguro">Compra 100% segura 🔓</p>
+      <a href="https://wa.me/5521982841299?text=Ol%C3%A1%2C+quero+falar+com+o+suporte." target="_blank" class="btn-suporte">Falar com o Suporte</a>
+      <p class="seguro">Compra 100% segura.</p>
     </section>
   </main>
 
@@ -75,6 +75,7 @@
     const cart = document.getElementById('cart');
     const cartList = document.getElementById('cart-items');
     const btnBuy = document.getElementById('btn-buy');
+    const btnClear = document.getElementById('btn-clear');
     let selected = [];
 
     btnDropdown.addEventListener('click', () => {
@@ -122,6 +123,12 @@
       }
       const msg = encodeURIComponent(text);
       window.open(`https://wa.me/5521982841299?text=${msg}`, '_blank');
+    });
+
+    btnClear.addEventListener('click', () => {
+      selected = [];
+      menu.querySelectorAll('li.selected').forEach(li => li.classList.remove('selected'));
+      renderCart();
     });
   </script>
 

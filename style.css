@@ -6,7 +6,7 @@
 
 body {
   font-family: 'Segoe UI', sans-serif;
-  background: #f0f2f5;
+  background: #ffffff;
   color: #333;
   display: flex;
   flex-direction: column;
@@ -21,154 +21,151 @@ header {
   margin-bottom: 40px;
 }
 
-header h1 {
-  font-size: 3.2rem;
+h1 {
+  font-size: 3rem;
   color: #2c3e50;
-  margin-bottom: 10px;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-header .sub {
-  font-size: 1.4rem;
-  color: #555;
+.sub {
+  font-size: 1.3rem;
+  color: #666;
 }
 
-.btn-menu, .btn-suporte, .btn-cart {
-  background: #2ecc71;
+.btn-menu,
+.btn-suporte,
+.btn-cart {
+  background: #4CAF50;
   color: white;
   padding: 18px 36px;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
   margin: 20px;
-  transition: transform 0.2s, box-shadow 0.3s;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
 
-.btn-menu:hover, .btn-suporte:hover, .btn-cart:hover {
-  transform: scale(1.06);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+.btn-menu:hover,
+.btn-suporte:hover,
+.btn-cart:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
 }
 
 .dropdown-menu {
-  list-style: none;
-  background: #ffffff;
-  color: #333;
-  border-radius: 16px;
+  background: #f9f9f9;
   width: 100%;
-  max-width: 600px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  overflow: hidden;
-  padding: 20px 30px;
-  margin-bottom: 30px;
-  animation: slideUp 0.6s ease;
+  max-width: 700px;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  margin-bottom: 40px;
+  animation: slideDown 0.5s ease-in-out;
 }
 
 .dropdown-menu li {
-  padding: 16px 0;
-  border-bottom: 1px solid #eee;
-  cursor: pointer;
-  transition: background 0.3s;
   font-size: 1.2rem;
+  background: #ffffff;
+  margin: 16px 0;
+  padding: 18px 24px;
+  border-radius: 14px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .dropdown-menu li:hover {
-  background: #f5f5f5;
+  background: #f0f0f0;
+  transform: translateY(-2px);
 }
 
 .dropdown-menu li.selected {
-  background: #d0ebff;
-  font-weight: bold;
+  background: #e6f4ea;
+  border-left: 6px solid #4CAF50;
 }
 
 .price-tag {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #27ae60;
-}
-
-.dropdown-menu p.aviso-preco {
-  text-align: center;
-  padding-top: 15px;
   font-size: 1rem;
-  color: #999;
-}
-
-.hidden {
-  display: none;
+  font-weight: bold;
+  color: #4CAF50;
 }
 
 .cart {
   background: #ffffff;
-  border-radius: 16px;
+  border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 600px;
+  max-width: 700px;
   padding: 30px;
   margin-top: 40px;
-  animation: slideUp 0.5s ease;
+  animation: fadeIn 0.4s ease;
 }
 
 .cart h2 {
   font-size: 1.8rem;
   margin-bottom: 20px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
 .cart ul {
-  list-style: inside disc;
-  margin-bottom: 20px;
+  list-style: inside square;
+  padding-left: 10px;
 }
 
 .cart li {
-  margin: 10px 0;
   font-size: 1.1rem;
+  margin: 10px 0;
 }
 
 #total-price {
   font-size: 1.3rem;
   font-weight: bold;
   color: #2c3e50;
-  margin-top: 10px;
+  margin-top: 20px;
+  text-align: right;
 }
 
 .seguro {
-  margin-top: 10px;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: #2c3e50;
   background: #eafaf1;
-  padding: 10px 20px;
-  border-radius: 10px;
+  padding: 14px 24px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  margin-top: 80px;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  font-weight: 500;
 }
 
 footer {
-  background: #ecf0f1;
+  margin-top: 60px;
+  padding: 20px;
+  background: #f2f2f2;
   width: 100%;
   text-align: center;
-  padding: 25px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #555;
-  margin-top: 60px;
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.05);
 }
 
 #btn-music-toggle {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  background: #2ecc71;
+  background: #4CAF50;
   border: none;
   padding: 16px;
-  font-size: 1.6rem;
-  border-radius: 50%;
+  font-size: 1.4rem;
   color: white;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
   cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
   transition: transform 0.3s;
   z-index: 999;
 }
@@ -177,12 +174,16 @@ footer {
   transform: scale(1.1);
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.hidden {
+  display: none;
 }
 
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(30px); }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-20px); }
   to { opacity: 1; transform: translateY(0); }
 }

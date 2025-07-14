@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Loja de Brainrots</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Música de fundo -->
+  <audio id="bg-music" autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_59328b4fc4.mp3?filename=chill-ambient-11476.mp3" type="audio/mp3" />
+  </audio>
+  <button id="btn-music-toggle" aria-label="Alternar música">🔊</button>
+
+  <header>
+    <h1>Loja de Brainrots</h1>
+    <p class="sub">Única loja que vende Lucky Block!</p>
+  </header>
+
+  <main>
+    <button id="btn-dropdown" class="btn-menu">🧠 Mostrar Brainrots</button>
+    <ul id="dropdown-menu" class="dropdown-menu hidden">
+      <li data-name="Mythic lucky block">Mythic lucky block – Estoque: 4</li>
+      <li data-name="God lucky block">God lucky block – Estoque: 1</li>
+      <li data-name="Cocofanto">Cocofanto – Estoque: 3 (10 k/s)</li>
+      <li data-name="Rainbow cocofanto">Rainbow cocofanto – Estoque: 1 (40 k/s)</li>
+      <li data-name="Girafa celestre">Girafa celestre – Estoque: 3 (20 k/s)</li>
+      <li data-name="Tralalelo">Tralalelo – Estoque: 2 (50 k/s)</li>
+      <li data-name="Tigroligre frutonni">Tigroligre frutonni – Estoque: 1 (60 k/s)</li>
+      <li data-name="Tralalelo gold">Tralalelo gold – Estoque: 1 (212.5 k/s)</li>
+      <li data-name="Tralalelo gold tung sahur">Tralalelo gold tung sahur – Estoque: 1 (262.5 k/s)</li>
+      <li data-name="Odin dun ✨">Odin dun ✨ – Estoque: 1 (450 k/s)</li>
+      <li data-name="Odin dun 🐈">Odin dun 🐈 – Estoque: 1 (450 k/s)</li>
+      <li data-name="Trezno turbo 3000 🔥">Trezno turbo 3000 🔥 – Estoque: 1 (600 k/s)</li>
+      <li data-name="Trezno turbo 3000 ✨">Trezno turbo 3000 ✨ – Estoque: 1 (900 k/s)</li>
+      <li data-name="Los tralaletilos">Los tralaletilos – Estoque: 1 (500 k/s)</li>
+      <p class="aviso-preco">*Consulte o preço no momento da compra*</p>
+    </ul>
+
+    <div id="cart" class="cart hidden">
+      <h2>Carrinho</h2>
+      <ul id="cart-items"></ul>
+      <button id="btn-buy" class="btn-suporte">Comprar selecionados</button>
+    </div>
+
+    <section class="suporte">
+      <a href="https://wa.me/5521982841299?text=Ol%C3%A1%2C+quero+falar+com+o+suporte." 
+         target="_blank" class="btn-suporte">Falar com o Suporte</a>
+      <p class="seguro">Compra 100% segura 🔓</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 | Desenvolvido por Kaio M Pereira</p>
+  </footer>
+
+  <script>
+    const music = document.getElementById('bg-music');
+    music.volume = 0.15;
+    music.play().catch(()=>{});
+    const btnMusic = document.getElementById('btn-music-toggle');
+    btnMusic.addEventListener('click', () => {
+      if (music.paused) {
+        music.play(); btnMusic.textContent='🔊';
+      } else {
+        music.pause(); btnMusic.textContent='🔈';
+      }
+    });
+
+    const btnDropdown = document.getElementById('btn-dropdown');
+    const menu = document.getElementById('dropdown-menu');
+    const cart = document.getElementById('cart');
+    const cartList = document.getElementById('cart-items');
+    const btnBuy = document.getElementById('btn-buy');
+    let selected = [];
+
+    btnDropdown.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+      btnDropdown.textContent = menu.classList.contains('hidden') ? '🧠 Mostrar Brainrots' : '✖️ Fechar Lista';
+    });
+
+    menu.querySelectorAll('li[data-name]').forEach(li => {
+      li.addEventListener('click', () => {
+        const name = li.dataset.name;
+        const idx = selected.indexOf(name);
+        if (idx >= 0) {
+          selected.splice(idx, 1);
+          li.classList.remove('selected');
+        } else {
+          selected.push(name);
+          li.classList.add('selected');
+        }
+        renderCart();
+      });
+    });
+
+    function renderCart() {
+      cartList.innerHTML = '';
+      if (selected.length === 0) {
+        cart.classList.add('hidden');
+        return;
+      }
+      selected.forEach(name => {
+        const item = document.createElement('li');
+        item.textContent = name;
+        cartList.appendChild(item);
+      });
+      cart.classList.remove('hidden');
+    }
+
+    btnBuy.addEventListener('click', () => {
+      let text = 'Olá, quero comprar os Brainrots: ';
+      if (selected.length === 1) {
+        text += selected[0] + '.';
+      } else {
+        const last = selected.pop();
+        text += selected.join(', ') + ' e ' + last + '.';
+        selected.push(last);
+      }
+      const msg = encodeURIComponent(text);
+      window.open(`https://wa.me/5521982841299?text=${msg}`, '_blank');
+    });
+  </script>
+
+</body>
+</html>

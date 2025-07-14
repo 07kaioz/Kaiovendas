@@ -1,134 +1,186 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!DOCTYPE html><html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Loja de Brainrots</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px;
+      min-height: 100vh;
+    }
+    h1 {
+      font-size: 4rem;
+      color: #0ff;
+      text-shadow: 4px 4px 12px #0ff;
+      margin-bottom: 10px;
+    }
+    .sub {
+      font-size: 1.8rem;
+      color: #ccc;
+      margin-bottom: 60px;
+    }
+    .btn {
+      font-size: 1.4rem;
+      padding: 20px 40px;
+      margin: 20px;
+      background: #00ffff;
+      color: #000;
+      border: none;
+      border-radius: 16px;
+      box-shadow: 0 8px 16px #0ff, 0 0 20px #0ff inset;
+      cursor: pointer;
+      transition: all 0.4s ease-in-out;
+    }
+    .btn:hover {
+      transform: scale(1.08);
+      background: #0ff;
+      box-shadow: 0 12px 24px #0ff, 0 0 24px #0ff inset;
+    }
+    .dropdown-menu {
+      width: 100%;
+      max-width: 800px;
+      background: #1c1c1c;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 12px 32px rgba(0, 255, 255, 0.3);
+      margin-bottom: 40px;
+      animation: fadeInList 1.2s ease-in-out;
+    }
+    .dropdown-menu li {
+      list-style: none;
+      font-size: 1.6rem;
+      background: #2a2a2a;
+      margin: 16px 0;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0, 255, 255, 0.4);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .dropdown-menu li:hover {
+      background: #333;
+      transform: scale(1.02);
+    }
+    .dropdown-menu li.selected {
+      background: #004d4d;
+      box-shadow: 0 8px 24px rgba(0, 255, 255, 0.6);
+    }
+    #cart {
+      margin-top: 40px;
+      background: #121212;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px #0ff;
+      width: 100%;
+      max-width: 800px;
+    }
+    #cart h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 8px #0ff;
+    }
+    #cart li {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+    .seguro {
+      margin-top: 100px;
+      font-size: 1.6rem;
+      color: #0ff;
+      text-shadow: 0 0 6px #0ff;
+      background: #111;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #0ff;
+    }
+    footer {
+      margin-top: 100px;
+      color: #777;
+      font-size: 1.2rem;
+    }
+    @keyframes fadeInList {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
+  <h1>Loja de Brainrots</h1>
+  <p class="sub">Única loja que vende Lucky Block!</p><button class="btn" onclick="toggleList()">Selecionar Brainrots</button>
 
-  <audio id="bg-music" autoplay loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_59328b4fc4.mp3?filename=chill-ambient-11476.mp3" type="audio/mp3" />
-  </audio>
-  <button id="btn-music-toggle">🔊</button>
+  <ul class="dropdown-menu" id="brainrotList" style="display:none">
+    <li onclick="addToCart(this)">Mythic lucky block – Estoque: 4</li>
+    <li onclick="addToCart(this)">God lucky block – Estoque: 1</li>
+    <li onclick="addToCart(this)">Cocofanto – Estoque: 3 (10 k/s)</li>
+    <li onclick="addToCart(this)">Rainbow cocofanto – Estoque: 1 (40 k/s)</li>
+    <li onclick="addToCart(this)">Girafa celestre – Estoque: 3 (20 k/s)</li>
+    <li onclick="addToCart(this)">Tralalelo – Estoque: 2 (50 k/s)</li>
+  </ul>  <div id="cart" style="display:none">
+    <h2>Seu carrinho</h2>
+    <ul id="cartItems"></ul>
+    <button class="btn" onclick="finalizarCompra()">Comprar selecionados</button>
+    <button class="btn" onclick="limparCarrinho()">Limpar carrinho</button>
+  </div><a class="btn" style="margin-top: 80px;" href="https://wa.me/5521982841299?text=Ol%C3%A1%2C+quero+falar+com+o+suporte." target="_blank">Falar com o Suporte</a>
 
-  <header>
-    <h1>Loja de Brainrots</h1>
-    <p class="sub">Única loja que vende Lucky Block!</p>
-  </header>
-
-  <main>
-    <button id="btn-dropdown" class="btn">🧠 Mostrar Brainrots</button>
-
-    <ul id="dropdown-menu" class="dropdown-menu hidden">
-      <li data-name="Mythic lucky block">Mythic lucky block – Estoque: 4</li>
-      <li data-name="God lucky block">God lucky block – Estoque: 1</li>
-      <li data-name="Cocofanto">Cocofanto – Estoque: 3 (10 k/s)</li>
-      <li data-name="Rainbow cocofanto">Rainbow cocofanto – Estoque: 1 (40 k/s)</li>
-      <li data-name="Girafa celestre">Girafa celestre – Estoque: 3 (20 k/s)</li>
-      <li data-name="Tralalelo">Tralalelo – Estoque: 2 (50 k/s)</li>
-      <li data-name="Tigroligre frutonni">Tigroligre frutonni – Estoque: 1 (60 k/s)</li>
-      <li data-name="Tralalelo gold">Tralalelo gold – Estoque: 1 (212.5 k/s)</li>
-      <li data-name="Tralalelo gold tung sahur">Tralalelo gold tung sahur – Estoque: 1 (262.5 k/s)</li>
-      <li data-name="Odin dun ✨">Odin dun ✨ – Estoque: 1 (450 k/s)</li>
-      <li data-name="Odin dun 🐈">Odin dun 🐈 – Estoque: 1 (450 k/s)</li>
-      <li data-name="Trezno turbo 3000 🔥">Trezno turbo 3000 🔥 – Estoque: 1 (600 k/s)</li>
-      <li data-name="Trezno turbo 3000 ✨">Trezno turbo 3000 ✨ – Estoque: 1 (900 k/s)</li>
-      <li data-name="Los tralaletilos">Los tralaletilos – Estoque: 1 (500 k/s)</li>
-      <p class="aviso-preco">*Consulte o preço no momento da compra*</p>
-    </ul>
-
-    <div id="cart" class="cart hidden">
-      <h2>Carrinho</h2>
-      <ul id="cart-items"></ul>
-      <button id="btn-buy" class="btn">Comprar selecionados</button>
-      <button id="btn-clear" class="btn">Limpar carrinho</button>
-    </div>
-
-    <div style="margin-top: 100px;">
-      <a href="https://wa.me/5521982841299?text=Ol%C3%A1%2C+quero+falar+com+o+suporte." target="_blank" class="btn">Falar com o Suporte</a>
-      <p class="seguro">Compra 100% segura 🔓.</p>
-    </div>
-  </main>
-
+  <p class="seguro">Compra 100% segura 🔓.</p>
   <footer>
     <p>© 2025 | Desenvolvido por Kaio M Pereira</p>
-  </footer>
+  </footer>  <script>
+    let selecionados = [];
 
-  <script>
-    const music = document.getElementById('bg-music');
-    music.volume = 0.15;
-    music.play().catch(() => {});
-    const btnMusic = document.getElementById('btn-music-toggle');
-    btnMusic.addEventListener('click', () => {
-      if (music.paused) {
-        music.play(); btnMusic.textContent = '🔊';
-      } else {
-        music.pause(); btnMusic.textContent = '🔈';
-      }
-    });
-
-    const btnDropdown = document.getElementById('btn-dropdown');
-    const menu = document.getElementById('dropdown-menu');
-    const cart = document.getElementById('cart');
-    const cartList = document.getElementById('cart-items');
-    const btnBuy = document.getElementById('btn-buy');
-    const btnClear = document.getElementById('btn-clear');
-    let selected = [];
-
-    btnDropdown.addEventListener('click', () => {
-      menu.classList.toggle('hidden');
-      btnDropdown.textContent = menu.classList.contains('hidden') ? '🧠 Mostrar Brainrots' : '✖️ Fechar Lista';
-    });
-
-    menu.querySelectorAll('li[data-name]').forEach(li => {
-      li.addEventListener('click', () => {
-        const name = li.dataset.name;
-        const idx = selected.indexOf(name);
-        if (idx >= 0) {
-          selected.splice(idx, 1);
-          li.classList.remove('selected');
-        } else {
-          selected.push(name);
-          li.classList.add('selected');
-        }
-        renderCart();
-      });
-    });
-
-    function renderCart() {
-      cartList.innerHTML = '';
-      if (selected.length === 0) {
-        cart.classList.add('hidden');
-        return;
-      }
-      selected.forEach(name => {
-        const item = document.createElement('li');
-        item.textContent = name;
-        cartList.appendChild(item);
-      });
-      cart.classList.remove('hidden');
+    function toggleList() {
+      const list = document.getElementById('brainrotList');
+      list.style.display = list.style.display === 'none' ? 'block' : 'none';
     }
 
-    btnBuy.addEventListener('click', () => {
-      let text = 'Olá, quero comprar os Brainrots: ';
-      if (selected.length === 1) {
-        text += selected[0] + '.';
+    function addToCart(item) {
+      const nome = item.textContent;
+      if (!selecionados.includes(nome)) {
+        selecionados.push(nome);
+        item.classList.add('selected');
+        renderCart();
       } else {
-        const last = selected.pop();
-        text += selected.join(', ') + ' e ' + last + '.';
-        selected.push(last);
+        selecionados = selecionados.filter(i => i !== nome);
+        item.classList.remove('selected');
+        renderCart();
       }
-      const msg = encodeURIComponent(text);
-      window.open(`https://wa.me/5521982841299?text=${msg}`, '_blank');
-    });
+    }
 
-    btnClear.addEventListener('click', () => {
-      selected = [];
-      menu.querySelectorAll('li.selected').forEach(li => li.classList.remove('selected'));
+    function renderCart() {
+      const lista = document.getElementById('cartItems');
+      const carrinho = document.getElementById('cart');
+      lista.innerHTML = '';
+      selecionados.forEach(nome => {
+        const li = document.createElement('li');
+        li.textContent = nome;
+        lista.appendChild(li);
+      });
+      carrinho.style.display = selecionados.length ? 'block' : 'none';
+    }
+
+    function finalizarCompra() {
+      let msg = 'Olá, quero comprar os brainrots: ';
+      if (selecionados.length === 1) {
+        msg += selecionados[0] + '.';
+      } else {
+        const ultima = selecionados.pop();
+        msg += selecionados.join(', ') + ' e ' + ultima + '.';
+        selecionados.push(ultima);
+      }
+      window.open('https://wa.me/5521982841299?text=' + encodeURIComponent(msg), '_blank');
+    }
+
+    function limparCarrinho() {
+      selecionados = [];
+      document.querySelectorAll('.dropdown-menu li').forEach(li => li.classList.remove('selected'));
       renderCart();
-    });
-  </script>
-</body>
+    }
+  </script></body>
 </html>
